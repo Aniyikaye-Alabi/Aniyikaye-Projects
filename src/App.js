@@ -1,15 +1,13 @@
 import React from 'react';
 import Header from './components/Header';
 import Indicators from './components/Indicators';
-import DisplayData from './components/DisplayData';
+import "./App.css";
 
 function App() {
   return (
     <div>
       <Header />
       <Indicators />
-
-      <DisplayData />
     </div>
   );
 }

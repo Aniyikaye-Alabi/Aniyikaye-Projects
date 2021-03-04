@@ -1,7 +1,17 @@
 import React, { Component } from 'react';
 import { ranking } from "./RankingData";
 
-//let sortarray = [...ranking].sort((a, b) => (a.indicators > b.indicators) ? 1 : -1);
+const firstEconomy = [...ranking].map(rank1 => {return rank1.Economy});
+
+const allEconomy = [...ranking].map(each => { return each });
+
+const starterEconomy = allEconomy[0];
+
+const starterValue = Object.values(starterEconomy);
+starterValue.shift();
+
+console.log(starterValue);
+
 
 class Indicators extends Component {
     
@@ -9,11 +19,12 @@ class Indicators extends Component {
         ranking : ranking.map(rank1 => { return rank1.Global_Rank }),
         economy: ranking.map(country => { return country.Economy }),
         Indicator: 'Global Rank',
-        ranks: []
+        ranks: [],
+        country: firstEconomy[0],
+        economyScores: starterValue
      }
 
      changeIndicator = (indicators) => {
-        //let crietaria = this.state.Indicator;
 
         let sortarray = ranking.sort((a, b) => { return (a[indicators] - b[indicators]); });
 
@@ -21,21 +32,34 @@ class Indicators extends Component {
 
         let size = sortarray.map(lis => { return (lis.Economy) });
 
-        //console.log(sortarray);
+        
         console.log(economy);
         console.log(size);
          this.setState(prevState => ({
              Indicator: indicators,
              economy: size
-             //ranks: [...prevState.ranks, size]
          }));
-         //console.log(this.state.economy);
+     }
+
+     changeEconomy = (economy) => {
+
+        const selectedEconomy = [...ranking].find(indicator => indicator.Economy === economy);
+
+        const scores = Object.values(selectedEconomy);
+        scores.shift();
+
+         this.setState({
+             country: economy,
+             economyScores: scores
+         })
      }
 
 
     render() { 
 
         const indicatorsObject = Object.keys(ranking[0]);
+
+        indicatorsObject.shift();
 
         let indicatorsKey = indicatorsObject;
 
@@ -48,7 +72,7 @@ class Indicators extends Component {
                                 <ul>
 
                                     {indicatorsKey.map(indicators => 
-                                    <li key={indicators} onClick={() => this.changeIndicator(indicators)}>
+                                    <li className='cursor' key={indicators} onClick={() => this.changeIndicator(indicators)}>
                                          {indicators} <hr/> 
                                     </li>)}
 
@@ -57,9 +81,9 @@ class Indicators extends Component {
 
                             <div className='col-lg-4 col-md-4 col-sm-12 my-3'>
                                 <h5>{ this.state.Indicator }</h5>
-                                <div className='regulation-handler scorll'>
+                                <div className='scroll'>
                                     <ol>
-                                        { this.state.economy.map( economy => <li key={economy}>{ economy }</li>) }
+                                        { this.state.economy.map( economy => <li className='cursor' key={economy} onClick={ () => this.changeEconomy(economy) }>{ economy }</li>) }
                                     </ol>
                                 </div>
                             </div>
@@ -68,7 +92,7 @@ class Indicators extends Component {
 
                                 <h5>Economy Scores</h5>
 
-                                <h6>Nigeria</h6>
+                                <h6>{this.state.country}</h6>
 
                                 <div className = "row">
                                     <div className='col-10'>
@@ -77,104 +101,55 @@ class Indicators extends Component {
                                             <hr/>
                                         </div>
                                         <div>
-                                            <span>Global Rank</span>
+                                            <span>Rank within Group</span>
                                             <hr/>
                                         </div>
                                         <div>
-                                            <span>Global Rank</span>
+                                            <span>Starting a Business</span>
                                             <hr/>
                                         </div>
                                         <div>
-                                            <span>Global Rank</span>
+                                            <span>Dealing with Construction Permits</span>
                                             <hr/>
                                         </div>
                                         <div>
-                                            <span>Global Rank</span>
+                                            <span>Getting  Electricity</span>
                                             <hr/>
                                         </div>
                                         <div>
-                                            <span>Global Rank</span>
+                                            <span>Registering_Property</span>
                                             <hr/>
                                         </div>
                                         <div>
-                                            <span>Global Rank</span>
+                                            <span>Getting Credit</span>
                                             <hr/>
                                         </div>
                                         <div>
-                                            <span>Global Rank</span>
+                                            <span>Protecting Minority Investors</span>
                                             <hr/>
                                         </div>
                                         <div>
-                                            <span>Global Rank</span>
+                                            <span>Paying Taxes</span>
                                             <hr/>
                                         </div>
                                         <div>
-                                            <span>Global Rank</span>
+                                            <span>Trading across Borders</span>
                                             <hr/>
                                         </div>
                                         <div>
-                                            <span>Global Rank</span>
+                                            <span>Enforcing Contracts</span>
                                             <hr/>
                                         </div>
                                         <div>
-                                            <span>Global Rank</span>
+                                            <span>Resolving Insolvency</span>
                                             <hr/>
                                         </div>
                                     </div>
 
                                     <div className='col-2'>
-                                        <div>
-                                            <span>1</span>
-                                            <hr/>
-                                        </div>
-                                        <div>
-                                            <span>1</span>
-                                            <hr/>
-                                        </div>
-                                        <div>
-                                            <span>1</span>
-                                            <hr/>
-                                        </div>
-                                        <div>
-                                            <span>1</span>
-                                            <hr/>
-                                        </div>
-                                        <div>
-                                            <span>1</span>
-                                            <hr/>
-                                        </div>
-                                        <div>
-                                            <span>1</span>
-                                            <hr/>
-                                        </div>
-                                        <div>
-                                            <span>1</span>
-                                            <hr/>
-                                        </div>
-                                        <div>
-                                            <span>1</span>
-                                            <hr/>
-                                        </div>
-                                        <div>
-                                            <span>1</span>
-                                            <hr/>
-                                        </div>
-                                        <div>
-                                            <span>1</span>
-                                            <hr/>
-                                        </div>
-                                        <div>
-                                            <span>1</span>
-                                            <hr/>
-                                        </div>
-                                        <div>
-                                            <span>1</span>
-                                            <hr/>
-                                        </div>
-                                        <div>
-                                            <span>1</span>
-                                            <hr/>
-                                        </div>
+                                        
+                                        { this.state.economyScores.map((score, key) => <div key={key}><span>{score}</span> <hr/></div>) }
+                                        
                                     </div>
                                 </div>
                             </div>

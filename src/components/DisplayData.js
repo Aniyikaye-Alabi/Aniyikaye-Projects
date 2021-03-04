@@ -51,19 +51,29 @@ class DisplayData extends Component {
         // }
 
         
-       [...ranking].map((indicator) => { 
-            let text = [];
-            if(indicator.Economy === 'Nigeria'){
-                text.push(indicator.Global_Rank, indicator.Paying_Taxes, indicator.Protecting_Minority_Investors)
-            }
-            else{
-                text = 'cool baby';
-            }
+    //    [...ranking].map((indicator) => { 
+    //         let text = [];
+    //         if(indicator.Economy === 'Nigeria'){
+    //             text.push(indicator.Global_Rank, indicator.Paying_Taxes, indicator.Protecting_Minority_Investors)
+    //         }
+    //         else{
+    //             text = 'cool baby';
+    //         }
 
-            return(
-                console.log(text)
+    //         return(
+    //             console.log(text)
 
-        )});
+    //     )});
+
+        const selectedEconomy = [...ranking].find(indicator => indicator.Economy === 'Nigeria');
+
+        const scores = Object.values(selectedEconomy);
+
+        console.log(scores);
+
+        //console.log(selectedEconomy);
+
+        //console.log(selectedEconomy.Global_Rank, selectedEconomy.Dealing_with_Construction_Permits, selectedEconomy.Enforcing_Contracts)
 
         //console.log(whine);
 
