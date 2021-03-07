@@ -21,6 +21,10 @@
   background-color: #919aaa;
 }
 
+.removeliststyletype {
+  list-style-type: none;
+}
+
 /* .App {
   text-align: center;
 }

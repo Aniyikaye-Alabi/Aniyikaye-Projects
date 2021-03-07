@@ -12,13 +12,14 @@ starterValue.shift();
 
 console.log(starterValue);
 
+console.log(...ranking)
 
 class Indicators extends Component {
     
     state = { 
         ranking : ranking.map(rank1 => { return rank1.Global_Rank }),
-        economy: ranking.map(country => { return country.Economy }),
-        Indicator: 'Global Rank',
+        economy: [...ranking],
+        Indicator: 'Global_Rank',
         ranks: [],
         country: firstEconomy[0],
         economyScores: starterValue
@@ -32,12 +33,14 @@ class Indicators extends Component {
 
         let size = sortarray.map(lis => { return (lis.Economy) });
 
+        console.log(sortarray);
+
         
         console.log(economy);
         console.log(size);
          this.setState(prevState => ({
              Indicator: indicators,
-             economy: size
+             economy: sortarray
          }));
      }
 
@@ -82,9 +85,9 @@ class Indicators extends Component {
                             <div className='col-lg-4 col-md-4 col-sm-12 my-3'>
                                 <h5>{ this.state.Indicator }</h5>
                                 <div className='scroll'>
-                                    <ol>
-                                        { this.state.economy.map( economy => <li className='cursor' key={economy} onClick={ () => this.changeEconomy(economy) }>{ economy }</li>) }
-                                    </ol>
+                                    <ul>
+                                        { this.state.economy.map( economy => <li className='cursor removeliststyletype' key={economy.Economy} onClick={ () => this.changeEconomy(economy) }>{ economy[this.state.Indicator] } - { economy.Economy }</li>) }
+                                    </ul>
                                 </div>
                             </div>
 
