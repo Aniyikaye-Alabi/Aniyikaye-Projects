@@ -86,7 +86,7 @@ class Indicators extends Component {
                                 <h5>{ this.state.Indicator }</h5>
                                 <div className='scroll'>
                                     <ul>
-                                        { this.state.economy.map( economy => <li className='cursor removeliststyletype' key={economy.Economy} onClick={ () => this.changeEconomy(economy) }>{ economy[this.state.Indicator] } - { economy.Economy }</li>) }
+                                        { this.state.economy.map( economy => <li className='cursor removeliststyletype' key={economy.Economy} onClick={ () => this.changeEconomy(economy.Economy) }>{ economy[this.state.Indicator] } - { economy.Economy }</li>) }
                                     </ul>
                                 </div>
                             </div>
